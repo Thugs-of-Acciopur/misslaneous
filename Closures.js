@@ -37,12 +37,37 @@
 // console.log(a) 
 
 
-function magic(){
-     let x = 100  // 101
-     return ()=> console.log(++x)
+// function magic(){
+//      let x = 100  // 101
+//      return ()=> console.log(++x)
+// }
+
+// let z = magic() // z = ()=> console.log(++x)
+// z() // 101
+// z() // 102
+// z() // 103
+
+
+// closures =>  function + scope around function
+
+
+function outer(){
+     let x = 100 
+     return ( function inner1(){
+          x = x+100 
+          let y = 500
+          console.log("inner 1",x)
+          return function inner2(){
+               x = x+200
+               console.log("inner 2",x,"y",y)
+          }
+     })
 }
 
-let z = magic() // z = ()=> console.log(++x)
-z() // 101
-z() // 102
-z() // 103
+// console.log(outer())
+let in1 = outer()
+console.log(in1)
+// in1()
+let in2 =  in1()
+console.log(in2)
+in2()
